@@ -2,3 +2,4 @@
 /.tmp/
 /pkg/
 /pdf/
+/tracks/[0-9][0-9]*.{flac,mp3}
