@@ -68,18 +68,20 @@ class Dj
   end
 end
 
-Rabbit::Renderer::Display::DrawingAreaBase.prepend(
-  Module.new do
-    def post_move(old_index, index)
-      super
+if defined? Rabbit::Renderer::Display::DrawingAreaBase
+  Rabbit::Renderer::Display::DrawingAreaBase.prepend(
+    Module.new do
+      def post_move(old_index, index)
+        super
 
-      Dj.play_track_for_slide(@canvas.current_index)
+        Dj.play_track_for_slide(@canvas.current_index)
+      end
+
+      def post_move_in_slide(old_index, index)
+        super
+
+        Dj.play_track_for_slide(@canvas.current_index)
+      end
     end
-
-    def post_move_in_slide(old_index, index)
-      super
-
-      Dj.play_track_for_slide(@canvas.current_index)
-    end
-  end
-)
+  )
+end
